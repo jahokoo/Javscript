@@ -112,9 +112,9 @@ alert(clone.sizes === deep.sizes);  //false
 
 user.sizes.width++;   // 비교를 위해 width를 상승시킨다. 51 -> 52
 
-console.log("user.sizes : ", user.sizes) // 52
-console.log("clone.sizes : ", clone.sizes) // 52 user.sizes와 같은 참조 값
-console.log("deep.sizes : ", deep.sizes) // 51
+console.log("user.sizes : ", user.sizes); // 52
+console.log("clone.sizes : ", clone.sizes); // 52 user.sizes와 같은 참조 값
+console.log("deep.sizes : ", deep.sizes); // 51
 
 //얕은 복사 전개 연산자 ...를 사용해 보자.
 let shallow = { ...user };
@@ -122,4 +122,33 @@ shallow.sizes.width++;  // 중첩객체를 변경하면 원본도 같이 수정�
 console.log(user.sizes); // width = 53;
 shallow.add = 'test';
 console.log(shallow); // add:test 추가 원본에는 영향x
-console.log(user)   // add가 추가되지 않음
+console.log(user);   // add가 추가되지 않음
+
+
+// JSON.stringify를 사용한 깊은 복사
+// JSON.stringify는 객체를
+let jsonShallow = JSON.parse(JSON.stringify(user));
+
+console.log('jsonShallow :',jsonShallow); // user
+
+jsonShallow.sizes.width++; // 깊은복사한 객체 수정
+
+console.log(jsonShallow.sizes); // width = 54
+console.log(user.sizes); // width = 53
+
+
+function deepCopyObj(obj){
+    const result = {};
+
+    for(let key in obj){
+        if(typeof obj[key] === 'object'){ // 중첩객체가 있다면
+            result[key] = deepCopyObj(obj[key]); // 재귀함수를 사용해 값을 할당
+        }else{
+            result[key] = obj[key];
+        }
+    }
+    return result;
+}
+
+const deepCopyObject = deepCopyObj(user);
+console.log(deepCopyObject === user); // fasle
