@@ -1,5 +1,7 @@
 // 문자열
 
+
+
 // 따옴표
 // 문자열은 작은따옴표,큰따옴표, 백틱으로 감쌀수 있따.
 // let single = '작은따옴표';
@@ -259,11 +261,103 @@
 // 90을 16진수로 변환하면 5a입니다.
 // alert( '\u005a' ); // Z
 
-let str = '';
 
-for (let i = 65; i <= 220; i++) {
-  str += String.fromCodePoint(i);
-}
-console.log( str );
-// ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-// ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
+// let str = '';
+
+// for (let i = 65; i <= 220; i++) {
+//   str += String.fromCodePoint(i);
+// }
+// console.log( str );
+// // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+// // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
+
+
+
+// 문자열 제대로 비교하기
+// localeCompare을 호출하여 문자열을 비교할 수 있다.
+
+// str.localeCompare(str2)
+// str이 str2 보다 작으면 음수, 크면 양수, 같아면 0 을 반환한다.
+
+// alert( 'Österreich'.localeCompare('Zealand') ); // -1
+// alert('A'.localeCompare('a')); // 1
+// alert('같은크기'.localeCompare('같은크기')); // 0
+
+// 문자열 심화
+// 사용빈도가 낮은 기호는 '서로게이트 쌍 (surrogate pair)' 라는 2바이트 글자들의 쌍을 사용해 인코딩 한다.
+// alert( '𝒳'.length ); // 2, 수학에서 쓰이는 대문자 X(그리스 문자 카이 - 옮긴이)
+// alert( '😂'.length ); // 2, 웃으면서 눈물 흘리는 얼굴을 나타내는 이모티콘
+// alert( '𩷶'.length ); // 2, 사용 빈도가 낮은 중국어(상형문자)
+
+
+// 서로게이트 쌍은 두 글자로 취급되어 기호를 가져오는데 까다롭다.
+// alert( '𝒳'[0] ); // 이상한 기호가 출력됨
+// alert( '𝒳'[1] ); // 서로게이트 쌍의 일부가 출력됨
+
+
+// 첫 글자를 대문자로 바꿔보기
+
+// function ucFirst(str){
+//     return str[0].toUpperCase() + str.slice(1)
+// }
+
+// 비어있는 문자열인 경우 undefined를 반환한다. undefined는 toUpperCase를 지원하지 않아 에러를 발생한다.
+// 두 가지 방법으로 예외를 처리할 수 있다.
+
+// function ucFirst(str){
+//     if(!str) return str; // 만약 undefined면 문자열로 반환 (비어있는 그대로)
+
+//     return str[0].toUpperCase() + str.slice(1)
+// }
+// console.log(ucFirst(''))
+// console.log(ucFirst("john") == "John")
+
+
+// 스팸 문자열 걸러내기
+// function checkSpam(str){
+//     let lowStr = str.toLowerCase();
+//     if(lowStr.includes('viagra') || lowStr.includes('xxx')){
+//         return true;
+//     }else{
+//         return false;
+//     }
+// }
+// console.log(checkSpam('buy ViAgRA now'))
+// console.log(checkSpam('free xxxxx'))
+// console.log(checkSpam("innocent rabbit"))
+
+
+
+// 문자열 줄이기
+
+// 나의 답변
+// function truncate(str, maxlength){
+//     if(str.length > maxlength){
+//         return str.slice(0,maxlength) + '...';
+//     }else{
+//         return str
+//     }
+// }
+
+// 해답   , ?연산자를 사용해 코드가 더 간결해짐
+// function truncate(str, maxlength){
+//     return(str.length > maxlength) ?
+//     str.slice(0,maxlength) : str
+// }
+
+// console.log(truncate("What I'd like to tell on this topic is:", 20));
+// console.log(truncate("Hi everyone!", 20));
+
+
+// 숫자만 추출하기
+// 정규식을 이용해서 추출하면 위치에 상관없이 숫자만 추출
+// function extractCurrencyValue(str){
+//     const regex = /[^0-9]/g;
+//     return parseInt(str.replace(regex,''))
+// }
+
+// // 해답 , 한정적인 위치에서 숫자를 가져오기 때문에 좋지않음
+// function extractCurrencyValue(str){
+//     return parseInt(str.slice(1));
+// }
+// console.log(extractCurrencyValue('$120'))
