@@ -181,24 +181,22 @@
 // toString
 // 배열에는 toString 메소드가 구현되어 있어 호출하면 쉼표로 구분한 문자열이 반환된다.
 
-let arr = [1,2,3];
+// let arr = [1,2,3];
 
-console.log(arr);
-console.log(String(arr) === '1,2,3'); // true
+// console.log(arr);
+// console.log(String(arr) === '1,2,3'); // true
 
-console.log( [] + 1 ); // "1"
-console.log( [1] + 1 ); // "11"
-console.log( [1,2] + 1 ); // "1,21"
-
-
-// 덧셈 연산자 " + "는 피연산자 중 하나가 문자열일 경우 나머지 피연산자도 문자열로 반환한다.
-console.log( "" + 1 ); // "1"
-console.log( "1" + 1 ); // "11"
-console.log( "1,2" + 1 ); // "1,21"
+// console.log( [] + 1 ); // "1"
+// console.log( [1] + 1 ); // "11"
+// console.log( [1,2] + 1 ); // "1,21"
 
 
-let styles = ['jazz', 'blues'];
-styles.push('rock-n-roll');
-styles[2]
-styles.shift();
-styles.unsfhit('rap','raggae');
+// // 덧셈 연산자 " + "는 피연산자 중 하나가 문자열일 경우 나머지 피연산자도 문자열로 반환한다.
+// console.log( "" + 1 ); // "1"
+// console.log( "1" + 1 ); // "11"
+// console.log( "1,2" + 1 ); // "1,21"
+
+
+styles = ['jazz','classic','rock'];
+
+console.log(styles[Math.floor((styles.length -1 ) /2)]);
