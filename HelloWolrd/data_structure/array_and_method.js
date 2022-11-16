@@ -416,15 +416,16 @@ console.log( ar3 ); // HTML, JavaScript, CSS (no changes)
 
 // 확장가능한 계산기 (새로운 연산 추가하기)
 
-function Calculator(){
-   
+// 생성자 함수 대신 클래스로 생성
+class Calculator{
+   constructor(){
     // 메소드를 만들기 위해 this를 프로퍼티에 사용
-    this.methods = { 
+        this.methods = { 
         '-' : (a,b) => (a-b),
         '+' : (a,b) => (a+b)
     };
 
-   this.calculate = function(str){
+    this.calculate = function(str){
         let split = str.split(' '),
         // 변수에 맞게 인덱스를 추가
         a = +split[0], // 변수앞에 '+'가 존재하면 숫자로 인식
@@ -439,8 +440,9 @@ function Calculator(){
    };
 
    this.addMethod = function(name,func){
-        this.methods[name] = func;
+    this.methods[name] = func;
    }
+}
 };
 
 let calc = new Calculator;
