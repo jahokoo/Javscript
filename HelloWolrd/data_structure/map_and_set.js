@@ -208,10 +208,18 @@ console.log(keys)
 
 let mapTest = new Map();
 
-mapTest.set('첫번째','first');
-mapTest.set(1,{'dd' : 'dd'});
+mapTest.set= {'dd' : 33}
+mapTest.set = {'sdd' : 'dddd'}
+// mapTest.set('첫번째','first');
+// mapTest.set(1,{'dd' : 'dd'});
 
-
-console.log(mapTest.forEach((arr,arr2) => console.log(arr,arr2)));
+console.log(mapTest)
+// console.log(mapTest.forEach((arr,arr2) => console.log(arr,arr2)));
 console.log(typeof mapTest)
 
+
+let obj2 = {};
+
+obj2['asdasd'] = 123;
+
+console.log(obj2)
