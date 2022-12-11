@@ -90,3 +90,6 @@ console.log(date); // 01 Jan 2016
 
 date.setDate(0); // 일의 최솟값은 1이므로 0을 입력하면 이전 달의 마지막 날을 설정한 것과 같은 효과
 console.log(date); // 31 Dec 2015
+
+date.setDate(-10);
+console.log(date); // 20 Nov 2015
